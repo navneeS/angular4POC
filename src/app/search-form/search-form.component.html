@@ -1,0 +1,29 @@
+<div>
+  <form #validateForm="ngForm" novalidate>
+    <div class="form-group">
+
+      <input class="form-control" type="text" name="source" [(ngModel)]="source" required placeholder="Enter Origin City" />
+    </div>
+    <div class="form-group">
+
+      <input class="form-control" type="text" name="destination" [(ngModel)]="destination" required placeholder="Enter Destination City"
+      />
+    </div>
+    <div class="form-group">
+
+      <input class="form-control" type="date" name="departureDate" [(ngModel)]="departureDate" placeholder="Departure Date" max="2018-09-09">
+    </div>
+    <div class="form-group">
+
+      <input class="form-control" type="date" name="returnDate" [(ngModel)]="returnDate" placeholder="Departure Date" max="2018-09-09">
+    </div>
+    <div class="form-group">
+      <select class="form-control" id="passengers" required name="passengers">
+    <option selected>Passengers</option>
+<option *ngFor="let p of passengers"  [value]="p">{{p}}</option>
+</select>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Search</button>
+  </form>
+  <!-- (ngSubmit)="validate(validateForm)" -->
+</div>
