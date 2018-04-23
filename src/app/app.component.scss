@@ -1,0 +1,34 @@
+.flight-header {
+  border-bottom: 2px solid black;
+}
+
+.flight-container {
+  padding: 10px 0px 10px 0px;
+}
+
+.flight-search-form {
+  padding: 10px 10px 0px 20px;
+}
+
+.flight-result-form {
+  min-height: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-left: 1px solid black;
+}
+
+@media screen and (min-width: 468px),
+screen and (min-height: 700px) {
+  .flight-result-form {
+    min-height: 100vh;
+  }
+  .flight-search-form {
+    min-height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 468px) {
+  .flight-result-form {
+    padding: 4px 4px 4px 20px;
+  }
+}

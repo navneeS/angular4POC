@@ -1,0 +1,27 @@
+.search-form {
+  border: 1px solid black;
+}
+
+.flight-details-form {
+  padding: 10px;
+}
+
+.return-btn {
+  margin-left: -5px;
+}
+
+.btn {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.btn-selected {
+  background-color: #bfbfbf;
+  font-weight: bold;
+  color: #000000;
+}
+
+.errMsg{
+  color: red;
+}
+

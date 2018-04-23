@@ -1,0 +1,28 @@
+li {
+  list-style-type: none;
+}
+
+.result-header {
+  border-bottom: 2px solid black;
+}
+
+.all-flight-details {
+  margin: 5px;
+}
+
+.single-flight-details {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 10px;
+}
+
+.flight-details-list {
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+@media only screen and (max-width: 468px) {
+  .flight-details-sm {
+    width: 140px;
+  }
+}

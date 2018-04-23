@@ -4,11 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "mockServer": "json-server --watch mockData/flights.json",
+    "start": "ng serve --proxy-config proxy.conf.json"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@angular/router": "^4.2.4",
     "bootstrap": "4.0.0-beta.2",
     "core-js": "^2.4.1",
+    "ng2-completer": "^1.6.3",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
@@ -36,6 +38,7 @@
     "codelyzer": "~3.2.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
+    "json-server": "^0.12.1",
     "karma": "~1.7.0",
     "karma-chrome-launcher": "~2.1.1",
     "karma-cli": "~1.0.1",
