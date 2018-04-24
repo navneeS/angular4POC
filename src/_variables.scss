@@ -1,0 +1,18 @@
+/* Common variables for style */
+$font-stack: Helvetica,
+sans-serif;
+$primary-color: #495057;
+$white: #fff;
+$grey: #95908F;
+$error-color: red;
+$black: #000;
+$light-grey: #bfbfbf;
+$small-device-width: 468px;
+$spacing-var: 10px;
+
+/*mixing for creating rounded corner buttons*/
+@mixin rounded-corner($arc) {
+    -moz-border-radius: $arc;
+    -webkit-border-radius: $arc;
+    border-radius: $arc;
+  }

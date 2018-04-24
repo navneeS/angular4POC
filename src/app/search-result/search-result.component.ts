@@ -1,17 +1,19 @@
-import { Component, OnInit, Input, AfterContentChecked, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, AfterContentChecked, DoCheck, OnDestroy } from '@angular/core';
 import { SearchFlightService } from '../search-flight-service.service';
 import { Subscription } from 'rxjs/Subscription';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss']
 })
-export class SearchResultComponent implements OnInit, AfterContentChecked, OnDestroy {
+export class SearchResultComponent implements OnInit, AfterContentChecked, DoCheck, OnDestroy {
   flights: any;
-  returnFlights: any;
   flightsFound: any = [];
-  returnFlightsFound: any = [];
   showFlights: Boolean = false;
+  serverError: String = '';
   private subscription: Subscription;
   searchData: any = {};
   constructor(private flightService: SearchFlightService) {
@@ -22,26 +24,29 @@ export class SearchResultComponent implements OnInit, AfterContentChecked, OnDes
   }
 
   ngOnInit() {
-    this.flightService.getReturnFlights()
-      .subscribe(data => {
-        this.returnFlights = data.returnFlights;
-      });
+    this.flightService.getAllFlights()
+    .subscribe(data => {
+      this.flights = data.Flights;
+    },
+    (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.log('Client-side error occured.');
+      } else {
+        this.serverError = 'The server encountered an error processing the request. Please try again, Sorry for the trouble.';
+      }
+    });
+  }
 
-    this.flightService.getOneWayFlights()
-      .subscribe(data => {
-        this.flights = data.oneWayFlights;
-      });
+  ngDoCheck() {
+    if (Object.keys(this.searchData).length === 0) {
+      this.showFlights = false;
+    }
   }
 
   ngAfterContentChecked() {
     if (Object.keys(this.searchData).length !== 0) {
       this.flightsFound = [];
-      this.returnFlightsFound = [];
-      if (this.searchData && this.searchData.returnDate) {
-        this.returnFlightsFound = this.returnFlights.filter(
-          flights => flights.from === this.searchData.source && flights.to === this.searchData.destination);
-        this.showFlights = true;
-      } else if (this.searchData && !this.searchData.returnDate) {
+      if (this.searchData && this.flights) {
         this.flightsFound = this.flights.filter(
           flights => flights.from === this.searchData.source && flights.to === this.searchData.destination);
         this.showFlights = true;

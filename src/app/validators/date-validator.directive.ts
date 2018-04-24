@@ -23,7 +23,7 @@ export class DateValidatorDirective implements Validator { // Creating class imp
         }
         const message = {
             'departureDate': {
-                'message': 'The date must be greater than or same as present day.' 
+                'message': 'Date must be greater than or same as present day.'
             }
         };
         return isValid ? null : message;

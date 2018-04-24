@@ -1,19 +1,20 @@
+@import '../../variables';
 li {
   list-style-type: none;
 }
 
 .result-header {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid $grey;
+  padding-top: $spacing-var;
 }
 
-.all-flight-details {
-  margin: 5px;
-}
-
+// .all-flight-details {
+//   margin: 5px;
+// }
 .single-flight-details {
-  border: 1px solid black;
+  border: 1px solid $grey;
   margin: 5px;
-  padding: 10px;
+  padding: $spacing-var;
 }
 
 .flight-details-list {
@@ -21,8 +22,32 @@ li {
   padding-left: 0px;
 }
 
-@media only screen and (max-width: 468px) {
+.normal-padding {
+  padding: $spacing-var;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spacing-top {
+  padding-top: 5px;
+}
+
+.spacing-bottom {
+  padding-bottom: 5px;
+}
+
+@media only screen and (max-width: $small-device-width) {
   .flight-details-sm {
     width: 140px;
+  }
+  .blank-div {
+    width: 0px;
+  }
+  .btn-container {
+    margin-left: $spacing-var;
   }
 }

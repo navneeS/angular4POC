@@ -1,27 +1,37 @@
-.search-form {
-  border: 1px solid black;
-}
-
-.flight-details-form {
-  padding: 10px;
-}
-
-.return-btn {
-  margin-left: -5px;
+@import '../../variables';
+.tab {
+  padding-top: $spacing-var;
 }
 
 .btn {
+  @include rounded-corner(5px);
+}
+
+.tab-btn {
+  @include rounded-corner(5px);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
+.search-form {
+  border: 1px solid $grey;
+}
+
+.flight-details-form {
+  padding: $spacing-var;
+}
+
+.one-way-btn {
+  float: left;
+}
+
 .btn-selected {
-  background-color: #bfbfbf;
+  background-color: $light-grey;
   font-weight: bold;
-  color: #000000;
+  color: $white;
+  border-bottom: none;
 }
 
-.errMsg{
-  color: red;
+.errMsg {
+  color: $error-color
 }
-

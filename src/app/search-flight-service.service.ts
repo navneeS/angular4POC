@@ -18,18 +18,10 @@ export class SearchFlightService {
     return this.flightSearch.asObservable();
   }
 
-  public getReturnFlights(): Observable<any> {
-    return this.http.get('/api/returnFlightsData')
+  public getAllFlights(): Observable<any> {
+    return this.http.get('/api/FlightsData')
       .map((res: any) => {
         return res.json();
       });
   }
-
-  public getOneWayFlights(): Observable<any> {
-    return this.http.get('/api/oneWayFlightsData')
-      .map((res: any) => {
-        return res.json();
-      });
-  }
-
 }

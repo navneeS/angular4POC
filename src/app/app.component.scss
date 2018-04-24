@@ -1,34 +1,36 @@
+@import '../variables';
 .flight-header {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid $grey;
+  padding-left: 25px;
 }
 
 .flight-container {
   padding: 10px 0px 10px 0px;
 }
 
-.flight-search-form {
-  padding: 10px 10px 0px 20px;
+.view-container {
+  margin: 0px;
 }
 
 .flight-result-form {
   min-height: 100%;
   padding-left: 0px;
   padding-right: 0px;
-  border-left: 1px solid black;
 }
 
-@media screen and (min-width: 468px),
-screen and (min-height: 700px) {
+@media screen and (min-width: $small-device-width),
+screen and (min-height: 850px) {
   .flight-result-form {
     min-height: 100vh;
+    border-left: 1px solid $grey;
   }
   .flight-search-form {
     min-height: 100vh;
   }
 }
 
-@media only screen and (max-width: 468px) {
-  .flight-result-form {
-    padding: 4px 4px 4px 20px;
+@media only screen and (max-width: $small-device-width) {
+  .flight-header {
+    padding-left: $spacing-var;
   }
 }

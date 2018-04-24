@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
-    "test": "ng test",
+    "test": "ng test --watch=true --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "mockServer": "json-server --watch mockData/flights.json",

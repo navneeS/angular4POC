@@ -1,67 +1,41 @@
 <div class="flight-result" *ngIf="showFlights">
-  <div *ngIf="returnFlightsFound.length===0 && flightsFound.length===0 ">No Flights are available for this route. Please select a different route.</div>
-  <div class="row result-header" style="margin-left: 0px;" *ngIf="flightsFound.length!==0 || returnFlightsFound.length!==0">
-    <div class="col-8">
+  <div *ngIf="flightsFound.length===0" class="normal-padding">No Flights are available for this route. Please select a different route.</div>
+  <div class="row result-header" style="margin-left: 0px;" *ngIf="flightsFound.length!==0">
+    <div class="col-7">
       <h3>{{searchData.source}} > {{searchData.destination}} <span *ngIf="searchData.returnDate">> {{searchData.source}} </span></h3>
     </div>
-    <div class="col-4">
-      <h6>Depart : {{searchData.departureDate}} </h6>
-      <h6 *ngIf="searchData.returnDate">Return : {{searchData.returnDate}} </h6>
+    <div class="col-5" style="text-align:center">
+      <h6>Depart : {{searchData.departureDate | date:'dd MMM yyyy'}} </h6>
+      <h6 *ngIf="searchData.returnDate">Return : {{searchData.returnDate | date:'dd MMM yyyy'}} </h6>
     </div>
   </div>
-  <div *ngIf="searchData.returnDate">
-
-    <ul class="flight-details-list">
-      <li class="single-flight-details" *ngFor="let flight of returnFlightsFound">
-        <h3>Rs. {{flight.price + flight.retprice}}</h3>
-
-        <div class="row all-flight-details">
-          <div class="col-md-4 col-lg-4 col-sm-6 flight-details-sm">
-            <h6>{{flight.flightCode}}</h6>
-            <span>{{flight.fromCode}} ></span>
-            <span>{{flight.toCode}}</span>
-            <div>Depart : {{flight.departure}}</div>
-            <div>Arrival : {{flight.arrival}}</div>
-          </div>
-          <div class="col-md-4 col-lg-4 col-sm-6 flight-details-sm">
-            <h6>{{flight.retflightCode}}</h6>
-            <span>{{flight.retfromCode}} ></span>
-            <span>{{flight.rettoCode}}</span>
-            <div>Depart : {{flight.retdeparture}}</div>
-            <div>Arrival : {{flight.retarrival}}</div>
-          </div>
-
-          <div class="col-md-4 col-lg-4">
-            <div><img src="../../assets/images/flight.jpg" style="width:125px;height:60px;"></div>
-            <div><button class="btn btn-primary mb-2">Book this flight</button></div>
-          </div>
-        </div>
-
-      </li>
-    </ul>
-  </div>
-  <div *ngIf="!searchData.returnDate">
+  <div>
 
     <ul class="flight-details-list">
       <li class="single-flight-details" *ngFor="let flight of flightsFound">
-        <h3>Rs. {{flight.price}}</h3>
-
+        <h3>Rs. {{searchData.returnDate ? flight.price + flight.retprice : flight.price}}</h3>
         <div class="row all-flight-details">
-          <div class="col-6 ">
-            <h6>{{flight.flightCode}}</h6>
-            <span>{{flight.fromCode}} ></span>
-            <span>{{flight.toCode}}</span>
-            <div>Depart : {{flight.departure}}</div>
-            <div>Arrival : {{flight.arrival}}</div>
+          <div class=" col-sm-6 col-md-4 col-lg-4 flight-details-sm">
+            <div class="spacing-bottom"><small>{{flight.flightCode}}</small></div>
+            <span  class="spacing-top">{{flight.fromCode}} ></span>
+            <span  class="spacing-top">{{flight.toCode}}</span>
+            <div  class="spacing-top">Depart : {{flight.departure}}</div>
+            <div  class="spacing-top">Arrive : {{flight.arrival}}</div>
           </div>
-
-          <div class="col-6">
-            <div><img src="../../assets/images/flight.jpg" style="width:125px;height:60px;"></div>
+          <div *ngIf="searchData.returnDate" class="col-sm-6 col-md-4 col-lg-4 flight-details-sm">
+            <div  class="spacing-bottom"><small>{{flight.retflightCode}}</small></div>
+            <span  class="spacing-top">{{flight.retfromCode}} ></span>
+            <span  class="spacing-top">{{flight.rettoCode}}</span>
+            <div  class="spacing-top">Depart : {{flight.retdeparture}}</div>
+            <div  class="spacing-top">Arrive : {{flight.retarrival}}</div>
+          </div>
+          <div *ngIf="!searchData.returnDate" class="col-md-4 col-lg-4 blank-div"></div>
+          <div class="col-sm-6 col-md-4 col-lg-4 flight-details-sm btn-container">
             <div><button class="btn btn-primary mb-2">Book this flight</button></div>
           </div>
         </div>
-
       </li>
     </ul>
   </div>
 </div>
+<div class="normal-padding" *ngIf="serverError">{{serverError}}</div>

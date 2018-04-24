@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FieldErrorComponent } from './field-error.component';
 
-describe('FieldErrorComponent', () => {
+xdescribe('FieldErrorComponent', () => {
   let component: FieldErrorComponent;
   let fixture: ComponentFixture<FieldErrorComponent>;
 

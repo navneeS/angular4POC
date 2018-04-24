@@ -1,8 +1,10 @@
+@import '../../variables';
+
 .error-list {
-  padding-left: 0px;
+  padding: 3px;
 }
 
 .error-msg {
-  color: red;
+  color: $error-color;
   list-style-type: none;
 }

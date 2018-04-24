@@ -1,6 +1,6 @@
 <div class="tab">
-  <button class="btn btn-primary" (click)="oneWayClick()" [ngClass]="!showReturn? 'btn-selected' : ''">One way</button>
-  <button class="btn btn-primary return-btn" (click)="returnClick()" [ngClass]="showReturn? 'btn-selected' : ''">Return</button>
+  <button class="btn btn-primary return-btn tab-btn" (click)="returnClick()" [ngClass]="showReturn? 'btn-selected' : ''">Return</button>
+  <button class="btn btn-primary one-way-btn tab-btn" (click)="oneWayClick()" [ngClass]="!showReturn? 'btn-selected' : ''">One way</button>
 </div>
 
 <div class="search-form">
@@ -9,32 +9,34 @@
     <div class="flight-details-form">
 
       <div class="form-group">
-        <ng2-completer #source="ngModel" ngModel name="source" required placeholder="Enter Origin City" autoMatch="true" clearUnselected="true" [datasource]="cities" [minSearchLength]="0"></ng2-completer>
+        <ng2-completer [(ngModel)]="flight.source" #source="ngModel" (keyup)="OnValueChange()" name="source" required placeholder="Enter Origin City"
+          autoMatch="true" clearUnselected="true" [datasource]="cities" [minSearchLength]="0"></ng2-completer>
         <app-field-error *ngIf="submitted" [flightControl]="source"></app-field-error>
       </div>
 
       <div class="form-group">
-        <ng2-completer #destination="ngModel" ngModel name="destination" required placeholder="Enter Destination City" autoMatch="true" clearUnselected="true" [datasource]="cities"
-          [minSearchLength]="0"></ng2-completer>
+        <ng2-completer #destination="ngModel" [(ngModel)]="flight.destination" (keyup)="OnValueChange()" name="destination" required
+          placeholder="Enter Destination City" autoMatch="true" clearUnselected="true" [datasource]="cities" [minSearchLength]="0"></ng2-completer>
         <app-field-error *ngIf="submitted" [flightControl]="destination"></app-field-error>
         <div *ngIf="locationErrorMsg" class="errMsg">{{locationErrorMsg}}</div>
       </div>
 
       <div class="form-group">
-        <input class="form-control" placeholder="Departure Date" type="text" onfocus="(this.type='date')" required name="departureDate"
-          appDateValidate #departureDate="ngModel" ngModel>
+        <input class="form-control" placeholder="Departure Date" type="text" (change)="OnValueChange()" onfocus="(this.type='date')"
+          required name="departureDate" appDateValidate #departureDate="ngModel" [(ngModel)]="flight.departureDate">
         <app-field-error *ngIf="submitted" [flightControl]="departureDate"></app-field-error>
       </div>
 
       <div class="form-group" *ngIf="showReturn">
-        <input class="form-control" type="text" onfocus="(this.type='date')" required name="returnDate" appDateValidate #returnDate="ngModel"
-          ngModel placeholder="Return Date">
+        <input class="form-control" type="text" onfocus="(this.type='date')" (change)="OnValueChange()" required name="returnDate"
+          appDateValidate #returnDate="ngModel" placeholder="Return Date" [(ngModel)]="flight.returnDate">
         <app-field-error *ngIf="submitted" [flightControl]="returnDate"></app-field-error>
         <div *ngIf="dateErrorMsg" class="errMsg">{{dateErrorMsg}}</div>
       </div>
 
       <div class="form-group">
-        <select class="form-control" id="noOfPassengers" required name="noOfPassengers" #noOfPassengers="ngModel" ngModel>
+        <select class="form-control" id="noOfPassengers" required name="noOfPassengers" (change)="OnValueChange()" #noOfPassengers="ngModel"
+          [(ngModel)]="flight.noOfPassengers" [style.color]="noOfPassengers.touched? '#495057': '#95908F'">
             <option value="" disabled selected>Passengers</option>
            <option *ngFor="let p of passengers"  [value]="p">{{p}}</option>
         </select>
