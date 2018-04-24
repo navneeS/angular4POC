@@ -8,6 +8,7 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class SearchFlightService {
   private flightSearch = new Subject<any>();
+  private flightRate = new Subject<any>();
   constructor(private http: Http) { }
 
   setFlights(state: any) {
@@ -18,6 +19,13 @@ export class SearchFlightService {
     return this.flightSearch.asObservable();
   }
 
+  setRate(state: any) {
+    this.flightRate.next(state);
+  }
+
+  getRate(): Observable<any> {
+    return this.flightRate.asObservable();
+  }
   public getAllFlights(): Observable<any> {
     return this.http.get('/api/FlightsData')
       .map((res: any) => {

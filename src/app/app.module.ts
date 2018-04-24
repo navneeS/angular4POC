@@ -9,6 +9,7 @@ import { SearchFlightService } from './search-flight-service.service';
 import { DateValidatorDirective } from './validators/date-validator.directive';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { FieldErrorComponent } from './field-error/field-error.component';
+import { PriceSliderComponent } from './price-slider/price-slider.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FieldErrorComponent } from './field-error/field-error.component';
     SearchFormComponent,
     SearchResultComponent,
     DateValidatorDirective,
-    FieldErrorComponent
+    FieldErrorComponent,
+    PriceSliderComponent
   ],
   imports: [
     BrowserModule,

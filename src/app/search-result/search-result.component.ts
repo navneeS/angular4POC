@@ -14,6 +14,7 @@ export class SearchResultComponent implements OnInit, AfterContentChecked, DoChe
   flightsFound: any = [];
   showFlights: Boolean = false;
   serverError: String = '';
+  flightRate: any = 10000;
   private subscription: Subscription;
   searchData: any = {};
   constructor(private flightService: SearchFlightService) {
@@ -25,16 +26,28 @@ export class SearchResultComponent implements OnInit, AfterContentChecked, DoChe
 
   ngOnInit() {
     this.flightService.getAllFlights()
-    .subscribe(data => {
-      this.flights = data.Flights;
-    },
-    (err: HttpErrorResponse) => {
-      if (err.error instanceof Error) {
-        console.log('Client-side error occured.');
-      } else {
-        this.serverError = 'The server encountered an error processing the request. Please try again, Sorry for the trouble.';
-      }
-    });
+      .subscribe(data => {
+        this.flights = data.Flights;
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log('Client-side error occured.');
+        } else {
+          this.serverError = 'The server encountered an error processing the request. Please try again, Sorry for the trouble.';
+        }
+      });
+
+    this.flightService.getRate()
+      .subscribe(data => {
+        this.flightRate = data;
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log('Client-side error occured.');
+        } else {
+          this.serverError = 'The server encountered an error processing the request. Please try again, Sorry for the trouble.';
+        }
+      });
   }
 
   ngDoCheck() {

@@ -12,26 +12,28 @@
   <div>
 
     <ul class="flight-details-list">
-      <li class="single-flight-details" *ngFor="let flight of flightsFound">
-        <h3>Rs. {{searchData.returnDate ? flight.price + flight.retprice : flight.price}}</h3>
-        <div class="row all-flight-details">
-          <div class=" col-sm-6 col-md-4 col-lg-4 flight-details-sm">
-            <div class="spacing-bottom"><small>{{flight.flightCode}}</small></div>
-            <span  class="spacing-top">{{flight.fromCode}} ></span>
-            <span  class="spacing-top">{{flight.toCode}}</span>
-            <div  class="spacing-top">Depart : {{flight.departure}}</div>
-            <div  class="spacing-top">Arrive : {{flight.arrival}}</div>
-          </div>
-          <div *ngIf="searchData.returnDate" class="col-sm-6 col-md-4 col-lg-4 flight-details-sm">
-            <div  class="spacing-bottom"><small>{{flight.retflightCode}}</small></div>
-            <span  class="spacing-top">{{flight.retfromCode}} ></span>
-            <span  class="spacing-top">{{flight.rettoCode}}</span>
-            <div  class="spacing-top">Depart : {{flight.retdeparture}}</div>
-            <div  class="spacing-top">Arrive : {{flight.retarrival}}</div>
-          </div>
-          <div *ngIf="!searchData.returnDate" class="col-md-4 col-lg-4 blank-div"></div>
-          <div class="col-sm-6 col-md-4 col-lg-4 flight-details-sm btn-container">
-            <div><button class="btn btn-primary mb-2">Book this flight</button></div>
+      <li *ngFor="let flight of flightsFound">
+        <div class="single-flight-details" *ngIf="searchData.returnDate ? flightRate>= flight.price + flight.retprice : flightRate>= flight.price">
+          <h3>Rs. {{searchData.returnDate ? flight.price + flight.retprice : flight.price}}</h3>
+          <div class="row all-flight-details">
+            <div class=" col-sm-6 col-md-4 col-lg-4 flight-details-sm">
+              <div class="spacing-bottom"><small>{{flight.flightCode}}</small></div>
+              <span class="spacing-top">{{flight.fromCode}} ></span>
+              <span class="spacing-top">{{flight.toCode}}</span>
+              <div class="spacing-top">Depart : {{flight.departure}}</div>
+              <div class="spacing-top">Arrive : {{flight.arrival}}</div>
+            </div>
+            <div *ngIf="searchData.returnDate" class="col-sm-6 col-md-4 col-lg-4 flight-details-sm">
+              <div class="spacing-bottom"><small>{{flight.retflightCode}}</small></div>
+              <span class="spacing-top">{{flight.retfromCode}} ></span>
+              <span class="spacing-top">{{flight.rettoCode}}</span>
+              <div class="spacing-top">Depart : {{flight.retdeparture}}</div>
+              <div class="spacing-top">Arrive : {{flight.retarrival}}</div>
+            </div>
+            <div *ngIf="!searchData.returnDate" class="col-md-4 col-lg-4 blank-div"></div>
+            <div class="col-sm-6 col-md-4 col-lg-4 flight-details-sm btn-container">
+              <div><button class="btn btn-primary mb-2">Book this flight</button></div>
+            </div>
           </div>
         </div>
       </li>

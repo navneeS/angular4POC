@@ -1,0 +1,18 @@
+<div class="slidecontainer">
+  <p>Refine flight search</p>
+
+  <div class="row">
+    <div class="col-4" style="text-align:left">
+      1000
+    </div>
+    <div class="col-4" style="text-align:center">
+      <span>{{priceSlider}}</span>
+    </div>
+    <div class="col-4" style="text-align:right">
+      10000
+    </div>
+  </div>
+
+  <input type="range" min="1000" max="10000" value="10000" class="slider" [(ngModel)]="priceSlider" (change)="onSliderChange()" id="myRange">
+
+</div>
