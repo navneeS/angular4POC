@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SearchFlightService } from '../search-flight-service.service';
 
 @Component({
@@ -6,12 +6,10 @@ import { SearchFlightService } from '../search-flight-service.service';
   templateUrl: './price-slider.component.html',
   styleUrls: ['./price-slider.component.scss']
 })
-export class PriceSliderComponent implements OnInit {
+export class PriceSliderComponent {
   priceSlider: any;
   constructor(private flightService: SearchFlightService) { }
 
-  ngOnInit() {
-  }
   onSliderChange() {
     this.flightService.setRate(this.priceSlider);
   }

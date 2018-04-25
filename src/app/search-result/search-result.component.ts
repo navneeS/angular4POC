@@ -18,21 +18,19 @@ export class SearchResultComponent implements OnInit, AfterContentChecked, DoChe
   private subscription: Subscription;
   searchData: any = {};
   constructor(private flightService: SearchFlightService) {
+  }
+
+  ngOnInit() {
     this.subscription = this.flightService.getFlights().subscribe(
       searchData => {
         this.searchData = searchData;
       });
-  }
-
-  ngOnInit() {
     this.flightService.getAllFlights()
       .subscribe(data => {
         this.flights = data.Flights;
       },
       (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log('Client-side error occured.');
-        } else {
+        if (!(err.error instanceof Error)) {
           this.serverError = 'The server encountered an error processing the request. Please try again, Sorry for the trouble.';
         }
       });
@@ -40,13 +38,6 @@ export class SearchResultComponent implements OnInit, AfterContentChecked, DoChe
     this.flightService.getRate()
       .subscribe(data => {
         this.flightRate = data;
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log('Client-side error occured.');
-        } else {
-          this.serverError = 'The server encountered an error processing the request. Please try again, Sorry for the trouble.';
-        }
       });
   }
 

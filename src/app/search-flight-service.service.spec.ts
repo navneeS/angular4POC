@@ -1,10 +1,11 @@
 import { TestBed, inject } from '@angular/core/testing';
-
+import { HttpModule } from '@angular/http';
 import { SearchFlightService } from './search-flight-service.service';
 
-xdescribe('SearchFlightServiceService', () => {
+describe('SearchFlightServiceService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [HttpModule],
             providers: [SearchFlightService]
         });
     });

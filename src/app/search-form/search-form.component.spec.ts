@@ -37,6 +37,11 @@ describe('SearchFormComponent', () => {
     expect(component.showReturn).toEqual(true);
   });
 
+  it('should hide flights if any value in form changes', () => {
+    component.OnValueChange();
+    expect(component.submitted).toEqual(false);
+  });
+
   it('should show error message when departure date is greater than return date', () => {
     const flight = {
       form: {
