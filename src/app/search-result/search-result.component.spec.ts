@@ -67,4 +67,71 @@ describe('SearchResultComponent', () => {
             expect(component.flights).toBe(flights);
         });
     });
+    it('should sort the flights when return date is present', () => {
+        component.searchData = {
+            source: 'Delhi',
+            destination: 'Mumbai',
+            departureDate: 'Mon Apr 26 2018 20:15:39 GMT+0530 (India Standard Time)',
+            returnDate: 'Mon Apr 26 2018 20:15:39 GMT+0530 (India Standard Time)',
+            noOfPassengers: '1'
+        };
+        component.flights = [{
+            'from': 'Delhi',
+            'fromCode': 'DEL',
+            'to': 'Mumbai',
+            'toCode': 'BOM',
+            'departure': '12:00 AM',
+            'arrival': '03:00 AM',
+            'price': 6000,
+            'flightCode': 'AI-101',
+            'retprice': 3000
+        },
+        {
+            'from': 'Delhi',
+            'fromCode': 'DEL',
+            'to': 'Mumbai',
+            'toCode': 'BOM',
+            'departure': '12:00 AM',
+            'arrival': '03:00 AM',
+            'price': 3000,
+            'flightCode': 'AI-101',
+            'retprice': 2000
+        }];
+        component.ngAfterContentChecked();
+        fixture.whenStable().then(() => {
+            expect(component.flights).toBe(flights);
+        });
+    });
+    it('should sort the flights when return date is not present', () => {
+        component.searchData = {
+            source: 'Delhi',
+            destination: 'Mumbai',
+            departureDate: 'Mon Apr 26 2018 20:15:39 GMT+0530 (India Standard Time)',
+            noOfPassengers: '1'
+        };
+        component.flights = [{
+            'from': 'Delhi',
+            'fromCode': 'DEL',
+            'to': 'Mumbai',
+            'toCode': 'BOM',
+            'departure': '12:00 AM',
+            'arrival': '03:00 AM',
+            'price': 6000,
+            'flightCode': 'AI-101',
+        },
+        {
+            'from': 'Delhi',
+            'fromCode': 'DEL',
+            'to': 'Mumbai',
+            'toCode': 'BOM',
+            'departure': '12:00 AM',
+            'arrival': '03:00 AM',
+            'price': 3000,
+            'flightCode': 'AI-101',
+        }];
+        component.ngAfterContentChecked();
+        fixture.whenStable().then(() => {
+            expect(component.flights).toBe(flights);
+        });
+    });
 });

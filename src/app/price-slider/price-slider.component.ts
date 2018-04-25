@@ -7,7 +7,7 @@ import { SearchFlightService } from '../search-flight-service.service';
   styleUrls: ['./price-slider.component.scss']
 })
 export class PriceSliderComponent {
-  priceSlider: any;
+  priceSlider = 10000;
   constructor(private flightService: SearchFlightService) { }
 
   onSliderChange() {

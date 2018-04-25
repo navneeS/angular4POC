@@ -53,6 +53,12 @@ export class SearchResultComponent implements OnInit, AfterContentChecked, DoChe
       if (this.searchData && this.flights) {
         this.flightsFound = this.flights.filter(
           flights => flights.from === this.searchData.source && flights.to === this.searchData.destination);
+        // sorting flights based on price
+        if (this.searchData.returnDate) {
+          this.flightsFound.sort(function (obj1, obj2) { return (obj1.price + obj1.retprice) - (obj2.price + obj2.retprice); });
+        } else {
+          this.flightsFound.sort(function (obj1, obj2) { return (obj1.price) - (obj2.price); });
+        }
         this.showFlights = true;
       }
     }
